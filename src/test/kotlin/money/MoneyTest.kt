@@ -17,6 +17,8 @@ internal class MoneyTest {
     internal fun testEquality() {
         assertTrue(Dollar(5).equals(Dollar(5)))
         assertFalse(Dollar(5).equals(Dollar(6)))
+        assertTrue(Franc(5).equals(Franc(5)))
+        assertFalse(Franc(5).equals(Franc(6)))
     }
 
     @Test
