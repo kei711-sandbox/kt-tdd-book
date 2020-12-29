@@ -4,8 +4,7 @@ open class TestCase(var name: String) {
     open fun setUp() {}
     open fun tearDown() {}
 
-    fun run(): TestResult {
-        val result = TestResult()
+    fun run(result: TestResult) {
         result.testStarted()
         setUp()
         try {
@@ -15,6 +14,5 @@ open class TestCase(var name: String) {
             result.testFailed()
         }
         tearDown()
-        return result
     }
 }
