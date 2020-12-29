@@ -1,7 +1,7 @@
 package money
 
 class Bank {
-    private var rates: MutableMap<Pair, Int> = mutableMapOf();
+    private var rates: MutableMap<Pair, Int> = mutableMapOf()
 
     fun reduce(source: Expression, to: String): Money = source.reduce(this, to)
 
