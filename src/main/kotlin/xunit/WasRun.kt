@@ -11,6 +11,10 @@ class WasRun(name: String) : TestCase(name) {
         log += "testMethod "
     }
 
+    fun testBrokenMethod() {
+        throw Exception()
+    }
+
     override fun tearDown() {
         log += "tearDown "
     }
