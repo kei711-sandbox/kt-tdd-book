@@ -1,7 +1,9 @@
 package money
 
-open class Money(protected val amount: Int, protected val currency: String) {
+open class Money(protected val amount: Int, protected val currency: String): Expression {
     fun times(multiplier: Int): Money = Money(amount * multiplier, currency)
+
+    fun plus(added: Money): Expression = Money(amount + added.amount, currency)
 
     fun currency(): String = currency
 
