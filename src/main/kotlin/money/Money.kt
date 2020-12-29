@@ -1,9 +1,11 @@
 package money
 
-open class Money(protected val amount: Int, protected val currency: String): Expression {
+open class Money(val amount: Int, val currency: String) : Expression {
     fun times(multiplier: Int): Money = Money(amount * multiplier, currency)
 
-    fun plus(added: Money): Expression = Money(amount + added.amount, currency)
+    fun plus(addend: Money): Expression = Sum(this, addend)
+
+    override fun reduce(to: String) = this
 
     fun currency(): String = currency
 
