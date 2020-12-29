@@ -5,7 +5,10 @@ open class Money(val amount: Int, val currency: String) : Expression {
 
     fun plus(addend: Money): Expression = Sum(this, addend)
 
-    override fun reduce(to: String) = this
+    override fun reduce(bank: Bank, to: String): Money {
+        val rate: Int = bank.rate(currency, to)
+        return Money(amount / rate,  to)
+    }
 
     fun currency(): String = currency
 
