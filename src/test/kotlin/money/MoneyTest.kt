@@ -34,4 +34,9 @@ internal class MoneyTest {
         assertEquals("USD", Money.dollar(1).currency())
         assertEquals("CHF", Money.franc(1).currency())
     }
+
+    @Test
+    internal fun testDifferentClassEquality() {
+        assertTrue(Money(10, "CHF").equals(Franc(10, "CHF")))
+    }
 }
