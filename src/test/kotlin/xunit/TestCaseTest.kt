@@ -21,13 +21,21 @@ class TestCaseTest(name: String) : TestCase(name) {
         val result = test.run()
         assertEquals("1 run, 1 failed", result.summary())
     }
+
+    fun testFailedResultFormatting() {
+        val result = TestResult()
+        result.testStarted()
+        result.testFailed()
+        assertEquals("1 run, 1 failed", result.summary())
+    }
 }
 
 internal class Test {
     @Test
     fun test() {
-        TestCaseTest("testTemplateMethod").run()
-        TestCaseTest("testResult").run()
-//        TestCaseTest("testFailedResult").run()
+        println(TestCaseTest("testTemplateMethod").run().summary())
+        println(TestCaseTest("testResult").run().summary())
+        println(TestCaseTest("testFailedResult").run().summary())
+        println(TestCaseTest("testFailedResultFormatting").run().summary())
     }
 }

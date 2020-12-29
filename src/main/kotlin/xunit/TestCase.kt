@@ -8,8 +8,12 @@ open class TestCase(var name: String) {
         val result = TestResult()
         result.testStarted()
         setUp()
-        val method = this::class.members.find { it.name == name }
-        method?.call(this)
+        try {
+            val method = this::class.members.find { it.name == name }
+            method?.call(this)
+        } catch (e: Exception) {
+            result.testFailed()
+        }
         tearDown()
         return result
     }
