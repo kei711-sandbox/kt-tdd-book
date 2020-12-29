@@ -1,34 +1,19 @@
 package xunit
 
 import org.junit.jupiter.api.Test
-import kotlin.test.assertTrue
+import kotlin.test.assertEquals
 
-class TestCaseTest(name: String): TestCase(name) {
-    var test: WasRun? = null;
-
-    override fun setUp() {
-        test = WasRun("testMethod")
-    }
-
-    fun testRunning() {
-        test?.let {
-            it.run()
-            assertTrue(it.wasRun)
-        } ?: assertTrue(false)
-    }
-
-    fun testSetUp() {
-        test?.let {
-            it.run()
-            assertTrue(it.wasSetUp)
-        } ?: assertTrue(false)
+class TestCaseTest(name: String) : TestCase(name) {
+    fun testTemplateMethod() {
+        val test = WasRun("testMethod")
+        test.run()
+        assertEquals("setUp testMethod tearDown ", test.log)
     }
 }
 
 internal class Test {
     @Test
     fun test() {
-        TestCaseTest("testRunning").run()
-        TestCaseTest("testSetUp").run()
+        TestCaseTest("testTemplateMethod").run()
     }
 }
