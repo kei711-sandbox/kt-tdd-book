@@ -1,7 +1,8 @@
 package money
 
-abstract class Money(protected val amount: Int) {
+abstract class Money(protected val amount: Int, protected val currency: String) {
     abstract fun times(multiplier: Int): Money
+    fun currency(): String = currency
 
     override fun equals(other: Any?): Boolean {
         val money: Money = other as Money
@@ -10,13 +11,7 @@ abstract class Money(protected val amount: Int) {
     }
 
     companion object {
-        @JvmStatic
-        fun dollar(amount: Int): Dollar {
-            return Dollar(amount)
-        }
-        @JvmStatic
-        fun franc(amount: Int): Franc {
-            return Franc(amount)
-        }
+        fun dollar(amount: Int): Dollar = Dollar(amount, "USD")
+        fun franc(amount: Int): Franc = Franc(amount, "CHF")
     }
 }
